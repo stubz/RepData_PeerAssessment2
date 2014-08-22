@@ -3,8 +3,8 @@ library(plyr);library(ggplot2)
 #dat <- read.csv("repdata-data-StormData.csv")
 dat <- read.csv(bzfile("repdata-data-StormData.csv.bz2", open="r"))
 dim(dat);head(dat)
-save(dat, file="dat.RData")
-load("dat.RData")
+#save(dat, file="dat.RData")
+#load("dat.RData")
 
 
 # Across the United States, which types of events (as indicated in the EVTYPE variable) 
