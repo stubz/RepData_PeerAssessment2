@@ -1,0 +1,29 @@
+---
+title: 'Reproducible Research: Peer Assessment 2'
+author: "Yusuke Yamamoto"
+date: "2014/8/17"
+output: html_document
+---
+
+#synopsis
+The worst 5 events that are most harmful with respect to human health are the tornado, excessive
+heat, Thunderstorm(TSTM) wind, flood and lightning. In terms of the economic damages, the worst 5 events are the tornado, flash flood, thunderstorm wind, hail and flood. 
+
+
+summary of the analysis in no more than 10 sentences.
+
+#Data Processing
+how the data are loaded and processed for the analysis.
+
+```{r,echo=FALSE}
+setwd("/Users/okada/myWork/coursera/RepData_PeerAssessment2")
+library(plyr);library(ggplot2)
+```
+
+We first read the data. 
+```{r, cache=TRUE}
+dat <- read.csv(bzfile("repdata-data-StormData.csv.bz2", open="r"))
+```
+
+#Results
+
