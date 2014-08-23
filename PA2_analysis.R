@@ -34,7 +34,7 @@ head(dat.sum.evtype)
 ## economic damge can be estimated by PROPDMG and CROPDMG
 dat.sum.evtype <- arrange(dat.sum.evtype, desc(total_economic_dmg),
                           desc(propdmg), desc(cropdmg))
-head(dat.sum.evtype)
+head(dat.sum.evtype, n=5)
 ## tornado, flash flood, tstm wind, hail, flood
 arrange(dat.sum.evtype, desc(cropdmg), desc(total_economic_dmg),
         desc(propdmg))[1:5, ]
@@ -48,11 +48,23 @@ dat.melt <- melt(subset(dat.sum.evtype,
 m1 <- ggplot(subset(dat.melt, EVTYPE %in% c("EXCESSIVE HEAT","HEAT", "LIGHTNING","HAIL","TORNADO","FLASH FLOOD","TSTM WIND","FLOOD","THUNDERSTORM WIND") & 
                       dmg_type %in% c("injuries","fatalities")),
              aes(x=EVTYPE, y=value, fill=factor(dmg_type)))
-m1 + geom_bar(stat="identity" )+coord_flip()
+m1 <- m1 + geom_bar(stat="identity" )+coord_flip()
+m1 + xlab("the number of fatalities and injuries") + ylab("Types of Events") +
+  ggtitle("Impact of events on the population health")
 
 
 ## economic damage
 m2 <- ggplot(subset(dat.melt, EVTYPE %in% c("EXCESSIVE HEAT","HEAT", "LIGHTNING","HAIL","TORNADO","FLASH FLOOD","TSTM WIND","FLOOD","THUNDERSTORM WIND") & 
                       dmg_type %in% c("propdmg","cropdmg")),
              aes(x=EVTYPE, y=value, fill=factor(dmg_type)))
-m2 + geom_bar(stat="identity" )+coord_flip()+ scale_fill_grey()
+m2 <- m2 + geom_bar(stat="identity" )+coord_flip()
+m2 + xlab("the number of fatalities and injuries") + ylab("Types of Events") + 
+  ggtitle("Impact of events on the economic activities")
+
+
+#### 
+library(knitr)
+knit2html(input = "PA2_analysis.Rmd", output = "PA2_analysis.Rmd") 
+knit2html(input = "PA2_analysis.Rmd", output = "PA2_analysis.md") 
+
+
